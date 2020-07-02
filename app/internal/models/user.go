@@ -2,7 +2,6 @@ package models
 
 import (
 	"errors"
-	"fmt"
 	"html"
 	"strings"
 	"time"
@@ -158,7 +157,6 @@ func (u *User) UpdateByID(db *gorm.DB, id uint32, email, nickname, password stri
 	if nil != err {
 		return nil, err
 	}
-	fmt.Println(u)
 
 	return u, nil
 
