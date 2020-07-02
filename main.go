@@ -15,8 +15,14 @@ limitations under the License.
 */
 package main
 
-import "github.com/setiadijoe/fullstack/cmd"
+import (
+	"os"
+
+	"github.com/setiadijoe/fullstack/cmd"
+)
 
 func main() {
-  cmd.Execute()
+	if err := cmd.Execute(); err != nil {
+		os.Exit(1)
+	}
 }
