@@ -96,7 +96,6 @@ func (svr *Server) UpdateUser(write http.ResponseWriter, req *http.Request) {
 		responses.ERROR(write, http.StatusUnprocessableEntity, err)
 		return
 	}
-	fmt.Println(req.Header.Get("Authorization"))
 	tokenID, err := auth.ExtractTokenID(req)
 	if nil != err {
 		responses.ERROR(write, http.StatusUnauthorized, errors.New("Unauthorized"))

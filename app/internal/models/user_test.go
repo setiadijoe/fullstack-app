@@ -140,7 +140,7 @@ func TestUpdateAUser(t *testing.T) {
 		Email:    "modiupdate@gmail.com",
 		Password: "password",
 	}
-	updatedUser, err := userUpdate.UpdateByID(server.DB, user.ID)
+	updatedUser, err := userUpdate.UpdateByID(server.DB, user.ID, userUpdate.Email, userUpdate.Nickname, userUpdate.Password)
 	if err != nil {
 		t.Errorf("this is the error updating the user: %v\n", err)
 		return
