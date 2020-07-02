@@ -2,7 +2,8 @@
 
 ## Stack
     1. Golang
-    2. Gorm
-    3. Mysql
-    4. JWT
-    5. godotenv
+    2. Cobra
+    3. Gorm
+    4. Mysql
+    5. JWT
+    6. godotenv
