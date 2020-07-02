@@ -1,7 +1,6 @@
 package config
 
 import (
-	"log"
 	"os"
 
 	"github.com/joho/godotenv"
@@ -32,7 +31,7 @@ var defaultConfig = &Config{
 func GetConfig() *Config {
 	err := godotenv.Load()
 	if err != nil {
-		log.Fatalf("Error getting env, not comming through %v", err)
+		return defaultConfig
 	}
 
 	if os.Getenv("APP_PORT") != "" {
