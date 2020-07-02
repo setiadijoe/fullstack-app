@@ -2,7 +2,6 @@ package helpers
 
 import (
 	"errors"
-	"fmt"
 	"strings"
 )
 
@@ -20,6 +19,5 @@ func FormatError(err string) error {
 	if strings.Contains(err, "password") {
 		return errors.New("invalid_credentials")
 	}
-	fmt.Println(err)
 	return errors.New("invalid_details")
 }
