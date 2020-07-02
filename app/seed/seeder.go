@@ -33,26 +33,28 @@ var posts = []models.Post{
 
 // Load ...
 func Load(db *gorm.DB) {
+	ok := db.Debug().HasTable(&models.User{})
+	ok = db.Debug().HasTable(&models.Post{})
 
-	err := db.Debug().DropTableIfExists(&models.Post{}, &models.User{}).Error
+	err := db.Debug().AutoMigrate(&models.User{}, &models.Post{}).Error
 	if err != nil {
-		log.Fatalf("cannot drop table: %v", err)
-	}
-	err = db.Debug().AutoMigrate(&models.User{}, &models.Post{}).Error
-	if err != nil {
+		db.Debug().Rollback()
 		log.Fatalf("cannot migrate table: %v", err)
 	}
 
-	for i := range users {
-		err = db.Debug().Model(&models.User{}).Create(&users[i]).Error
-		if err != nil {
-			log.Fatalf("cannot seed users table: %v", err)
-		}
-		posts[i].AuthorID = users[i].ID
+	if !ok {
+		for i := range users {
+			err = db.Debug().Model(&models.User{}).Create(&users[i]).Error
+			if err != nil {
+				log.Fatalf("cannot seed users table: %v", err)
+			}
+			posts[i].AuthorID = users[i].ID
 
-		err = db.Debug().Model(&models.Post{}).Create(&posts[i]).Error
-		if err != nil {
-			log.Fatalf("cannot seed posts table: %v", err)
+			err = db.Debug().Model(&models.Post{}).Create(&posts[i]).Error
+			if err != nil {
+				log.Fatalf("cannot seed posts table: %v", err)
+			}
 		}
 	}
+
 }
