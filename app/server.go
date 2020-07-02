@@ -3,9 +3,9 @@ package app
 import (
 	"fmt"
 	"log"
-	"os"
 
 	"github.com/joho/godotenv"
+	"github.com/setiadijoe/fullstack/app/config"
 	"github.com/setiadijoe/fullstack/app/controller"
 	"github.com/setiadijoe/fullstack/app/seed"
 )
@@ -22,8 +22,10 @@ func Run() {
 		fmt.Println("We are getting the env values")
 	}
 
-	server.Initialize(os.Getenv("DB_DRIVER"), os.Getenv("DB_USER"), os.Getenv("DB_PASSWORD"), os.Getenv("DB_PORT"), os.Getenv("DB_HOST"), os.Getenv("DB_NAME"))
-	server.Run(":8080")
+	dbConfig := config.GetConfig()
+
+	server.Initialize(dbConfig.DBDriver, dbConfig.DBUser, dbConfig.DBPassword, dbConfig.DBPort, dbConfig.DBHost, dbConfig.DBName)
+	server.Run(fmt.Sprintf(":%s", dbConfig.APPPort))
 }
 
 // Migration ...
@@ -35,8 +37,9 @@ func Migration() {
 	} else {
 		fmt.Println("We are getting the env values")
 	}
+	dbConfig := config.GetConfig()
 
-	server.Initialize(os.Getenv("DB_DRIVER"), os.Getenv("DB_USER"), os.Getenv("DB_PASSWORD"), os.Getenv("DB_PORT"), os.Getenv("DB_HOST"), os.Getenv("DB_NAME"))
+	server.Initialize(dbConfig.DBDriver, dbConfig.DBUser, dbConfig.DBPassword, dbConfig.DBPort, dbConfig.DBHost, dbConfig.DBName)
 
 	seed.Load(server.DB)
 }
