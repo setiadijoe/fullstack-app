@@ -8,6 +8,5 @@ import (
 
 // Home ...
 func (svr *Server) Home(write http.ResponseWriter, req *http.Request) {
-	host := req.URL.Host
-	responses.JSON(write, http.StatusOK, host)
+	responses.JSON(write, http.StatusOK, "welcome_budum")
 }
