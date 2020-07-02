@@ -5,7 +5,7 @@ import "github.com/setiadijoe/fullstack/app/middlewares"
 func (svr *Server) initializeRoutes() {
 
 	// Home Route
-	// svr.Router.HandleFunc("/", middlewares.SetMiddlewareJSON(svr.HomePage)).Methods("GET")
+	svr.Router.HandleFunc("/", middlewares.SetMiddlewareJSON(svr.Home)).Methods("GET")
 
 	// Login Route
 	svr.Router.HandleFunc("/login", middlewares.SetMiddlewareJSON(svr.Login)).Methods("POST")

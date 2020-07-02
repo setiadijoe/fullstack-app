@@ -6,7 +6,8 @@ import (
 	"github.com/setiadijoe/fullstack/app/responses"
 )
 
-// HomePage ...
-func (svr *Server) HomePage(write http.ResponseWriter, req http.Request) {
-	responses.JSON(write, http.StatusOK, "welcome_budum")
+// Home ...
+func (svr *Server) Home(write http.ResponseWriter, req *http.Request) {
+	host := req.URL.Host
+	responses.JSON(write, http.StatusOK, host)
 }
