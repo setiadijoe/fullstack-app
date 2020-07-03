@@ -28,7 +28,7 @@ func (svr *Server) Initialize(dbDriver, dbUser, dbPassword, dbPort, dbHost, dbNa
 			fmt.Printf("cannot_connect_to_%s_database", dbDriver)
 			log.Fatal("error:", err)
 		} else {
-			fmt.Printf("connected_to_%s_database", dbDriver)
+			fmt.Printf("connected_to_%s_database/n", dbDriver)
 		}
 	} else {
 		fmt.Printf("unknown_driver")
@@ -43,6 +43,6 @@ func (svr *Server) Initialize(dbDriver, dbUser, dbPassword, dbPort, dbHost, dbNa
 
 // Run ...
 func (svr *Server) Run(addr string) {
-	fmt.Println("Listening to port 8080")
+	fmt.Println("Listening to port", addr)
 	log.Fatal(http.ListenAndServe(addr, svr.Router))
 }

@@ -49,25 +49,18 @@ func Execute() error {
 func init() {
 	cobra.OnInitialize(initConfig)
 
-	// Here you will define your flags and configuration settings.
-	// Cobra supports persistent flags, which, if defined here,
-	// will be global for your application.
-
-	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.fullstack.yaml)")
-	rootCmd.PersistentFlags().StringP("author", "a", "YONATHAN SETIADI", "author name for copyright attribution")
-	rootCmd.PersistentFlags().StringVarP(&userLicense, "license", "l", "", "name of license for the project")
+	rootCmd.PersistentFlags().StringP("port", "p", "", "port for running")
+	rootCmd.PersistentFlags().StringP("dbDriver", "", "", "name of db driver")
+	rootCmd.PersistentFlags().StringP("dbHost", "", "", "host for db")
+	rootCmd.PersistentFlags().StringP("dbPort", "", "", "port for running db")
+	rootCmd.PersistentFlags().StringP("dbName", "", "", "name of db used")
+	rootCmd.PersistentFlags().StringP("dbUser", "", "root", "username of db")
+	rootCmd.PersistentFlags().StringP("dbPass", "", "admin", "password of db")
 	rootCmd.PersistentFlags().Bool("viper", true, "use Viper for configuration")
 	viper.BindPFlag("author", rootCmd.PersistentFlags().Lookup("author"))
 	viper.BindPFlag("useViper", rootCmd.PersistentFlags().Lookup("viper"))
 	viper.SetDefault("author", "YONATHAN SETIADI <setiadi_y56@yahoo.co.id>")
 	viper.SetDefault("license", "apache")
-
-	// rootCmd.AddCommand(addCmd)
-	// rootCmd.AddCommand(initCmd)
-
-	// Cobra also supports local flags, which will only run
-	// when this action is called directly.
-	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
 
 // initConfig reads in config file and ENV variables if set.

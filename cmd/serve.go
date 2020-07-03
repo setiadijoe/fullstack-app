@@ -29,7 +29,14 @@ var serveCmd = &cobra.Command{
 	Use:   "serve",
 	Short: "run the service",
 	Run: func(cmd *cobra.Command, args []string) {
-		app.Run()
+		port, _ := cmd.Flags().GetString("port")
+		dbDriver, _ := cmd.Flags().GetString("dbDriver")
+		dbHost, _ := cmd.Flags().GetString("dbHost")
+		dbName, _ := cmd.Flags().GetString("dbName")
+		dbUser, _ := cmd.Flags().GetString("dbUser")
+		dbPass, _ := cmd.Flags().GetString("dbPass")
+		dbPort, _ := cmd.Flags().GetString("dbPort")
+		app.Run(port, dbDriver, dbName, dbHost, dbPort, dbUser, dbPass)
 		fmt.Println("serve called")
 	},
 }
