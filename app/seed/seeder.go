@@ -58,3 +58,21 @@ func Load(db *gorm.DB) {
 	}
 
 }
+
+// // Migration ...
+// func Migration() error {
+// 	urlPath := ioutil.NopCloser(strings.NewReader("host:localhost port:3306 name:fullstack_api driver:mysql"))
+// 	newMigration, err := migrate.NewMigration(urlPath, "create_user_table", 1024, 625)
+// 	if nil != err {
+// 		fmt.Println(err)
+// 		return err
+// 	}
+
+// 	fmt.Println(newMigration)
+// 	return nil
+// }
+
+// func main() {
+// 	err := Migration()
+// 	fmt.Println(err)
+// }

@@ -45,7 +45,14 @@ var migrationCmd = &cobra.Command{
 	Use:   "migrate",
 	Short: "run a migration and seeder",
 	Run: func(cmd *cobra.Command, args []string) {
-		app.Migration()
+		port, _ := cmd.Flags().GetString("port")
+		dbDriver, _ := cmd.Flags().GetString("dbDriver")
+		dbHost, _ := cmd.Flags().GetString("dbHost")
+		dbName, _ := cmd.Flags().GetString("dbName")
+		dbUser, _ := cmd.Flags().GetString("dbUser")
+		dbPass, _ := cmd.Flags().GetString("dbPass")
+		dbPort, _ := cmd.Flags().GetString("dbPort")
+		app.Migration(port, dbDriver, dbName, dbHost, dbPort, dbUser, dbPass)
 		fmt.Println("run migration")
 	},
 }
